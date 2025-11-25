@@ -1,4 +1,38 @@
-useEffect(() => {
+
+import { useEffect } from 'react'
+import './App.css'
+import Hero from './components/Hero'
+import Navbar from './components/Navbar'
+import axios from 'axios'
+
+function App() {
+
+  const apikey="fc5b4f1b107764a995266090120ae67f"
+
+  const city = "Paris"
+
+  useEffect(() => {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`)
+   
+    .then((response)=> {
+      console.log("API DATA : ",response.data);
+    })
+    .catch((error)=> {
+      console.log("Error : ", error)
+    })
 
   }, [])
+
+  return (
+    <>
+      <Navbar />
+
+      <Hero/>
+
+    </>
+  )
+
+
+}
+
+export default App
